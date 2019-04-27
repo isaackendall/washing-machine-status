@@ -1,3 +1,6 @@
+// This works with the ESP32, but the calibration is wrong. It should be 
+// enough though to use it as checking if something is on or off. 
+// link to the circuit is here. https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/how-to-build-an-arduino-energy-monitor-measuring-current-only
 #include "EmonLib.h"
 // Include Emon Library
 EnergyMonitor emon1;
@@ -11,15 +14,8 @@ void setup()
 void loop()
 {
 
- // int sensor;                 //Define variable to read ADC data
-  //sensor = analogRead(A0);    //Read ADC
- // Serial.print("ADC Value:"); //Print Message
- // Serial.println(sensor);     //Print ADC value
- // delay(500);                 //Have some delay to make it visible 
-  //float voltage = sensor * (1.0 /1023);
-  //Serial.println(voltage);
   double Irms = emon1.calcIrms(1480);  // Calculate Irms only
-  Serial.print((Irms*110.0)/100);           // Apparent power
+  Serial.print(Irms*110.0);           // Apparent power with 110V supply assumed
   Serial.print(" ");
   Serial.println(Irms);             // Irms
   delay(500);                       // delay half a second
