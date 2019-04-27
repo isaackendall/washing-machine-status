@@ -5,6 +5,9 @@
 // Include Emon Library
 EnergyMonitor emon1;
 // Create an instance
+
+int val = 0;
+
 void setup()
 {
   Serial.begin(115200);
@@ -13,10 +16,17 @@ void setup()
 
 void loop()
 {
-
+val = 0;                                //set val to = 0
+for (int i = 0; i < 21; i++) {
+  
   double Irms = emon1.calcIrms(1480);  // Calculate Irms only
   Serial.print(Irms*110.0);           // Apparent power with 110V supply assumed
   Serial.print(" ");
   Serial.println(Irms);             // Irms
   delay(500);                       // delay half a second
+  val = val + Irms;                // add the new value of Irms to val
+  Serial.println(val);
+  delay(500);
+  }
+
 }
