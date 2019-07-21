@@ -33,7 +33,7 @@ void setup()
  
   Serial.begin(115200);
   
-  emon1.current(A2, 111.1);             // Current: input pin, calibration.
+  emon1.current(ADC3, 111.1);             // Current: input pin, calibration.
   
   WiFi.begin(ssid, pass);                               // Start WiFi connection
   ThingSpeak.begin(client);                             // Start ThingSpeak connection
